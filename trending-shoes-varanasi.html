@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trending Shoes Varanasi</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Poppins',sans-serif;background:#f1f3f6;color:#212121;overflow-x:hidden;}
+:root{
+  --blue:#2874f0;--blue-dark:#1a5dc8;--blue-light:#e8f0fe;
+  --orange:#fb641b;--green:#388e3c;--red:#ff6161;
+  --yellow:#ffe500;--gray:#f1f3f6;--white:#fff;
+  --muted:#878787;--border:#e0e0e0;--text:#212121;
+}
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-thumb{background:var(--blue);border-radius:3px;}
+
+/* ── NAV ── */
+.top-nav{
+  background:var(--blue);padding:0 24px;
+  display:flex;align-items:center;height:58px;gap:20px;
+  position:sticky;top:0;z-index:999;
+  box-shadow:0 2px 10px rgba(0,0,0,0.25);
+}
+.logo-wrap{min-width:180px;}
+.logo-main{font-size:1.05rem;font-weight:900;color:#fff;letter-spacing:.5px;line-height:1;}
+.logo-main span{color:var(--yellow);}
+.logo-sub{font-size:.58rem;color:rgba(255,255,255,.7);letter-spacing:2px;margin-top:2px;}
+.search-bar{flex:1;max-width:580px;display:flex;background:#fff;border-radius:3px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.1);}
+.search-bar input{flex:1;border:none;outline:none;padding:10px 14px;font-family:'Poppins',sans-serif;font-size:.83rem;}
+.search-btn{background:var(--blue);border:none;padding:0 18px;color:#fff;font-size:1rem;cursor:pointer;transition:.2s;}
+.search-btn:hover{background:var(--blue-dark);}
+.nav-right{display:flex;align-items:center;gap:16px;margin-left:auto;}
+.nav-btn{background:transparent;border:none;color:#fff;font-family:'Poppins',sans-serif;font-size:.75rem;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:5px;padding:6px 12px;border-radius:3px;transition:.2s;}
+.nav-btn:hover{background:rgba(255,255,255,.15);}
+.cart-count{background:var(--yellow);color:#212121;font-size:.55rem;font-weight:800;border-radius:50%;width:15px;height:15px;display:flex;align-items:center;justify-content:center;margin-left:-4px;margin-top:-10px;}
+
+/* ── TICKER ── */
+.ticker{background:var(--orange);padding:8px 0;overflow:hidden;white-space:nowrap;}
+.ticker-inner{display:inline-flex;gap:50px;animation:tick 25s linear infinite;font-size:.65rem;font-weight:700;color:#fff;letter-spacing:1px;}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── CAT NAV ── */
+.cat-nav{background:#fff;padding:0 20px;display:flex;gap:0;overflow-x:auto;border-bottom:1px solid var(--border);box-shadow:0 1px 3px rgba(0,0,0,.07);}
+.cat-nav::-webkit-scrollbar{display:none;}
+.cat-item{padding:11px 18px;white-space:nowrap;font-size:.72rem;font-weight:500;color:var(--text);cursor:pointer;border-bottom:2px solid transparent;transition:.2s;}
+.cat-item:hover,.cat-item.active{color:var(--blue);border-bottom-color:var(--blue);}
+
+/* ── HERO SLIDER ── */
+.hero-slider{margin:12px 24px;border-radius:8px;overflow:hidden;position:relative;height:250px;box-shadow:0 4px 16px rgba(0,0,0,.12);}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity .7s ease;display:flex;align-items:center;}
+.slide.active{opacity:1;z-index:1;}
+.slide-1{background:linear-gradient(120deg,#0d47a1 0%,#1565c0 40%,#1976d2 70%,#42a5f5 100%);}
+.slide-2{background:linear-gradient(120deg,#b71c1c 0%,#c62828 40%,#d32f2f 70%,#ef5350 100%);}
+.slide-3{background:linear-gradient(120deg,#1b5e20 0%,#2e7d32 40%,#388e3c 70%,#66bb6a 100%);}
+.slide-content{padding:30px 40px;z-index:2;flex:1;}
+.slide-tag{background:var(--yellow);color:#212121;font-size:.58rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:2px;display:inline-block;margin-bottom:10px;}
+.slide-content h2{font-size:2rem;font-weight:900;color:#fff;line-height:1.1;margin-bottom:6px;}
+.slide-content h2 span{color:var(--yellow);}
+.slide-content p{color:rgba(255,255,255,.8);font-size:.78rem;margin-bottom:16px;}
+.slide-cta{background:var(--yellow);color:#212121;border:none;padding:10px 26px;font-family:'Poppins',sans-serif;font-size:.72rem;font-weight:800;border-radius:3px;cursor:pointer;text-transform:uppercase;letter-spacing:.5px;transition:.2s;}
+.slide-cta:hover{background:#ffd600;transform:translateY(-1px);}
+.slide-img{width:42%;height:100%;display:flex;align-items:center;justify-content:center;font-size:7rem;filter:drop-shadow(-8px 4px 20px rgba(0,0,0,.3));flex-shrink:0;}
+/* dots */
+.slider-dots{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:10;}
+.dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.4);cursor:pointer;transition:.3s;}
+.dot.active{background:#fff;width:20px;border-radius:4px;}
+/* arrows */
+.slider-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:10;background:rgba(255,255,255,.2);border:none;color:#fff;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:1rem;transition:.2s;backdrop-filter:blur(4px);}
+.slider-arrow:hover{background:rgba(255,255,255,.35);}
+.slider-arrow.prev{left:12px;}
+.slider-arrow.next{right:12px;}
+
+/* ── OFFER STRIP ── */
+.offer-strip{background:var(--blue);margin:0 24px 12px;border-radius:4px;display:flex;overflow:hidden;}
+.offer-item{flex:1;padding:10px 16px;display:flex;align-items:center;gap:10px;border-right:1px solid rgba(255,255,255,.15);color:#fff;}
+.offer-item:last-child{border:none;}
+.offer-icon{font-size:1.3rem;}
+.offer-text strong{display:block;font-size:.72rem;font-weight:600;}
+.offer-text span{font-size:.6rem;opacity:.8;}
+
+/* ── BRAND FILTER ── */
+.brand-section{background:#fff;margin:12px 24px;border-radius:6px;padding:18px 20px;box-shadow:0 1px 4px rgba(0,0,0,.08);}
+.brand-title{font-size:.72rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:2px;margin-bottom:14px;}
+.brand-grid{display:flex;gap:10px;flex-wrap:wrap;}
+.brand-btn{border:2px solid var(--border);border-radius:4px;padding:8px 20px;font-family:'Poppins',sans-serif;font-size:.72rem;font-weight:600;cursor:pointer;background:#fff;color:var(--text);transition:.2s;display:flex;align-items:center;gap:6px;}
+.brand-btn:hover,.brand-btn.active{border-color:var(--blue);color:var(--blue);background:var(--blue-light);}
+.brand-btn.all.active{background:var(--blue);color:#fff;border-color:var(--blue);}
+
+/* ── COUNTDOWN ── */
+.countdown-bar{background:#fff3e0;border:1px solid #ffe0b2;margin:0 24px 12px;border-radius:6px;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.cd-left strong{font-size:.8rem;color:#e65100;}
+.cd-left span{font-size:.65rem;color:var(--muted);display:block;margin-top:2px;}
+.cd-timer{display:flex;gap:8px;align-items:center;}
+.cd-block{background:#e65100;color:#fff;border-radius:4px;padding:6px 10px;text-align:center;min-width:42px;}
+.cd-num{font-size:1rem;font-weight:800;line-height:1;display:block;}
+.cd-unit{font-size:.42rem;letter-spacing:1px;opacity:.85;}
+.cd-sep{color:#e65100;font-weight:800;font-size:1.1rem;}
+.grab-btn{background:#e65100;color:#fff;border:none;padding:10px 22px;font-family:'Poppins',sans-serif;font-size:.72rem;font-weight:700;border-radius:3px;cursor:pointer;transition:.2s;}
+.grab-btn:hover{background:#bf360c;}
+
+/* ── SECTION ── */
+.section{margin:12px 24px;background:#fff;border-radius:6px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.08);}
+.sec-header{padding:18px 20px 0;display:flex;align-items:center;justify-content:space-between;}
+.sec-title{font-size:1.05rem;font-weight:700;}
+.sec-title span{color:var(--blue);}
+.sec-sub{font-size:.65rem;color:var(--muted);margin-top:2px;}
+.view-all{background:var(--blue);color:#fff;border:none;padding:8px 18px;font-family:'Poppins',sans-serif;font-size:.68rem;font-weight:600;border-radius:2px;cursor:pointer;transition:.2s;text-transform:uppercase;}
+.view-all:hover{background:var(--blue-dark);}
+
+/* ── PRODUCTS ── */
+.products-grid{padding:16px;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);}
+.prod-card{background:#fff;padding:14px 12px 12px;cursor:pointer;position:relative;transition:box-shadow .2s;}
+.prod-card:hover{box-shadow:0 4px 20px rgba(0,0,0,.12);z-index:2;}
+.prod-img-wrap{width:100%;aspect-ratio:1;overflow:hidden;border-radius:4px;background:#f9f9f9;margin-bottom:10px;position:relative;display:flex;align-items:center;justify-content:center;}
+.prod-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
+.prod-card:hover .prod-img-wrap img{transform:scale(1.06);}
+.prod-badge{position:absolute;top:8px;left:8px;color:#fff;font-size:.52rem;font-weight:700;padding:3px 8px;border-radius:2px;letter-spacing:.5px;text-transform:uppercase;}
+.prod-badge.sale{background:var(--red);}
+.prod-badge.new{background:var(--green);}
+.prod-badge.hot{background:var(--orange);}
+.prod-badge.limited{background:#7b1fa2;}
+.prod-wishlist{position:absolute;top:8px;right:8px;background:#fff;border:none;width:28px;height:28px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 4px rgba(0,0,0,.15);font-size:.9rem;transition:transform .2s;}
+.prod-wishlist:hover{transform:scale(1.2);}
+.prod-brand{font-size:.58rem;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:1px;margin-bottom:3px;}
+.prod-name{font-size:.76rem;color:var(--text);font-weight:400;margin-bottom:4px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.prod-rating{display:flex;align-items:center;gap:5px;margin-bottom:6px;}
+.rating-pill{background:var(--green);color:#fff;font-size:.58rem;font-weight:700;padding:2px 6px;border-radius:2px;display:flex;align-items:center;gap:2px;}
+.rating-count{font-size:.58rem;color:var(--muted);}
+.prod-price-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap;}
+.prod-price{font-size:.88rem;font-weight:700;}
+.prod-mrp{font-size:.68rem;color:var(--muted);text-decoration:line-through;}
+.prod-disc{font-size:.68rem;color:var(--green);font-weight:600;}
+.prod-stock{font-size:.58rem;color:var(--red);font-weight:600;margin-top:3px;}
+.prod-sizes{display:flex;gap:4px;margin-top:8px;flex-wrap:wrap;}
+.sz{border:1px solid var(--border);border-radius:2px;font-size:.58rem;padding:2px 6px;color:var(--muted);cursor:pointer;transition:.15s;}
+.sz:hover{border-color:var(--blue);color:var(--blue);}
+.add-cart{width:100%;margin-top:10px;background:var(--blue);color:#fff;border:none;padding:9px;font-family:'Poppins',sans-serif;font-size:.7rem;font-weight:600;border-radius:3px;cursor:pointer;transition:.2s;display:flex;align-items:center;justify-content:center;gap:6px;}
+.add-cart:hover{background:var(--blue-dark);}
+
+/* ── TOP BRANDS ── */
+.brands-showcase{margin:12px 24px;background:#fff;border-radius:6px;padding:20px;box-shadow:0 1px 4px rgba(0,0,0,.08);}
+.brands-showcase h3{font-size:1rem;font-weight:700;margin-bottom:16px;}
+.brands-showcase h3 span{color:var(--blue);}
+.brand-cards{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;}
+.brand-card{border:2px solid var(--border);border-radius:6px;padding:16px 10px;text-align:center;cursor:pointer;transition:.2s;}
+.brand-card:hover{border-color:var(--blue);box-shadow:0 3px 10px rgba(40,116,240,.12);}
+.brand-card-logo{font-size:1.8rem;margin-bottom:6px;}
+.brand-card-name{font-size:.68rem;font-weight:700;color:var(--text);}
+.brand-card-count{font-size:.58rem;color:var(--muted);}
+
+/* ── DASHBOARD ── */
+.dashboard{margin:12px 24px;}
+.dash-title-bar{background:var(--blue);border-radius:6px 6px 0 0;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;}
+.dash-title-bar h3{color:#fff;font-size:.9rem;font-weight:700;}
+.dash-title-bar span{color:rgba(255,255,255,.7);font-size:.65rem;}
+.dash-body{background:#fff;border-radius:0 0 6px 6px;padding:20px;box-shadow:0 1px 4px rgba(0,0,0,.08);margin-bottom:12px;}
+.dash-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px;}
+.stat-card{background:var(--gray);border-radius:6px;padding:16px;border-left:4px solid var(--blue);transition:.2s;}
+.stat-card:hover{box-shadow:0 3px 12px rgba(40,116,240,.15);}
+.stat-card:nth-child(2){border-color:var(--orange);}
+.stat-card:nth-child(3){border-color:var(--green);}
+.stat-card:nth-child(4){border-color:#7b1fa2;}
+.stat-label{font-size:.6rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
+.stat-val{font-size:1.6rem;font-weight:800;color:var(--text);line-height:1;margin-bottom:4px;}
+.stat-change{font-size:.62rem;}
+.stat-change.up{color:var(--green);}
+.stat-change.down{color:var(--red);}
+.dash-bottom{display:grid;grid-template-columns:1.5fr 1fr;gap:14px;}
+.dash-table-wrap,.dash-src-wrap{background:var(--gray);border-radius:6px;padding:16px;}
+.dash-sub{font-size:.7rem;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.dash-sub::after{content:'';flex:1;height:1px;background:var(--border);}
+table{width:100%;border-collapse:collapse;}
+th{font-size:.58rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;text-align:left;padding:0 0 10px;border-bottom:1px solid var(--border);}
+td{font-size:.7rem;color:var(--text);padding:9px 0;border-bottom:1px solid var(--border);}
+tr:last-child td{border:none;}
+.status-pill{font-size:.56rem;font-weight:600;padding:3px 8px;border-radius:20px;display:inline-block;}
+.status-pill.delivered{background:#e8f5e9;color:#388e3c;}
+.status-pill.packed{background:#fff8e1;color:#f57c00;}
+.status-pill.pending{background:#fce4ec;color:#c62828;}
+.status-pill.processing{background:#e3f2fd;color:#1565c0;}
+.src-row{display:flex;align-items:center;gap:8px;margin-bottom:11px;}
+.src-row:last-child{margin:0;}
+.src-icon{font-size:1rem;min-width:22px;}
+.src-name{font-size:.68rem;min-width:80px;font-weight:500;}
+.src-bar-bg{flex:1;height:8px;background:#e0e0e0;border-radius:4px;overflow:hidden;}
+.src-bar{height:100%;border-radius:4px;}
+.src-bar.yt{background:linear-gradient(90deg,#ff0000,#ff4444);}
+.src-bar.wa{background:#25D366;}
+.src-bar.ig{background:linear-gradient(90deg,#833ab4,#fd1d1d);}
+.src-bar.direct{background:var(--blue);}
+.src-pct{font-size:.68rem;font-weight:700;color:var(--blue);min-width:34px;text-align:right;}
+
+/* ── WHATSAPP ── */
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:999;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(37,211,102,.45);text-decoration:none;animation:waPulse 2.5s infinite;transition:transform .2s;}
+.wa-float:hover{transform:scale(1.12);}
+.wa-float svg{width:28px;height:28px;fill:white;}
+@keyframes waPulse{0%,100%{box-shadow:0 4px 16px rgba(37,211,102,.45);}50%{box-shadow:0 4px 28px rgba(37,211,102,.7);}}
+
+/* ── MODAL ── */
+.modal-overlay{position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;}
+.modal-overlay.open{display:flex;}
+.modal{background:#fff;border-radius:8px;width:90%;max-width:460px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.22);}
+.modal-top{background:var(--blue);padding:14px 18px;display:flex;align-items:center;justify-content:space-between;}
+.modal-top h3{color:#fff;font-size:.9rem;font-weight:700;}
+.modal-close{background:none;border:none;color:#fff;font-size:1.4rem;cursor:pointer;}
+.modal-body{padding:22px;}
+.modal-row{display:flex;gap:14px;margin-bottom:18px;}
+.modal-img{width:90px;height:90px;border-radius:4px;overflow:hidden;background:#f1f3f6;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:2.5rem;}
+.modal-img img{width:100%;height:100%;object-fit:cover;}
+.modal-prod-name{font-size:.88rem;font-weight:600;margin-bottom:4px;}
+.modal-price{font-size:1.2rem;font-weight:800;color:var(--blue);}
+.modal-old{font-size:.72rem;color:var(--muted);text-decoration:line-through;}
+.modal-disc{font-size:.72rem;color:var(--green);font-weight:600;}
+.modal-section-title{font-size:.66rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+.sz-row{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+.sz-btn{border:2px solid var(--border);border-radius:3px;width:42px;height:36px;background:#fff;font-family:'Poppins',sans-serif;font-size:.72rem;cursor:pointer;transition:.15s;font-weight:600;}
+.sz-btn.selected,.sz-btn:hover{border-color:var(--blue);color:var(--blue);}
+.modal-wa{width:100%;padding:13px;background:#25D366;color:#fff;border:none;border-radius:4px;font-family:'Poppins',sans-serif;font-size:.82rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:.2s;}
+.modal-wa:hover{background:#1aaa50;}
+
+/* ── FOOTER ── */
+footer{background:#172337;color:#fff;padding:32px 24px 16px;margin-top:12px;}
+.footer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-bottom:22px;}
+.footer-logo{font-size:1rem;font-weight:800;margin-bottom:8px;}
+.footer-logo span{color:var(--yellow);}
+.footer-desc{font-size:.7rem;color:rgba(255,255,255,.45);line-height:1.7;}
+.footer-col h4{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:rgba(255,255,255,.45);margin-bottom:13px;}
+.footer-col ul{list-style:none;}
+.footer-col li{margin-bottom:9px;}
+.footer-col a{font-size:.72rem;color:rgba(255,255,255,.65);text-decoration:none;transition:.2s;}
+.footer-col a:hover{color:var(--yellow);}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:14px;display:flex;justify-content:space-between;}
+.footer-bottom p{font-size:.62rem;color:rgba(255,255,255,.35);}
+
+/* ── DEMO BADGE ── */
+.demo-badge{position:fixed;top:70px;right:0;z-index:998;background:var(--orange);color:#fff;padding:6px 16px 6px 12px;font-size:.58rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;border-radius:3px 0 0 3px;}
+
+/* ── FADE ── */
+.fade-in{opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s;}
+.fade-in.visible{opacity:1;transform:none;}
+</style>
+</head>
+<body>
+
+<div class="demo-badge">🎯 Live Demo</div>
+
+<!-- WHATSAPP -->
+<a class="wa-float" href="https://wa.me/916394326180" target="_blank">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- NAV -->
+<nav class="top-nav">
+  <div class="logo-wrap">
+    <div class="logo-main">Trending <span>Shoes</span></div>
+    <div class="logo-sub">Varanasi · Lahartara</div>
+  </div>
+  <div class="search-bar">
+    <input type="text" placeholder="Nike, Puma, Adidas, size dhundhen...">
+    <button class="search-btn">🔍</button>
+  </div>
+  <div class="nav-right">
+    <button class="nav-btn">📍 Varanasi</button>
+    <button class="nav-btn">👤 Login</button>
+    <button class="nav-btn" onclick="alert('Cart coming soon!')">
+      🛒 Cart <span class="cart-count">2</span>
+    </button>
+  </div>
+</nav>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span>🔥 2026 Latest Collection — Nike, Puma, Adidas, Nitro</span>
+    <span>|</span><span>📦 Same Day Delivery — Varanasi</span>
+    <span>|</span><span>💬 Order on WhatsApp: 6394326180</span>
+    <span>|</span><span>✅ Original Branded Shoes</span>
+    <span>|</span><span>🏆 2.7 Crore+ YouTube Views</span>
+    <span>|</span>
+    <span>🔥 2026 Latest Collection — Nike, Puma, Adidas, Nitro</span>
+    <span>|</span><span>📦 Same Day Delivery — Varanasi</span>
+    <span>|</span><span>💬 Order on WhatsApp: 6394326180</span>
+    <span>|</span><span>✅ Original Branded Shoes</span>
+    <span>|</span><span>🏆 2.7 Crore+ YouTube Views</span>
+  </div>
+</div>
+
+<!-- CAT NAV -->
+<div class="cat-nav">
+  <div class="cat-item active" onclick="setCat(this)">All Shoes</div>
+  <div class="cat-item" onclick="setCat(this)">Running</div>
+  <div class="cat-item" onclick="setCat(this)">Casual / Lifestyle</div>
+  <div class="cat-item" onclick="setCat(this)">Sports</div>
+  <div class="cat-item" onclick="setCat(this)">Formal</div>
+  <div class="cat-item" onclick="setCat(this)">Sandals & Slippers</div>
+  <div class="cat-item" onclick="setCat(this)">Kids</div>
+  <div class="cat-item" onclick="setCat(this)">New Arrivals 2026</div>
+</div>
+
+<!-- HERO SLIDER -->
+<div class="hero-slider" style="margin-top:12px;">
+  <!-- Slide 1 -->
+  <div class="slide slide-1 active">
+    <div class="slide-content">
+      <div class="slide-tag">🔥 Bestseller 2026</div>
+      <h2>Puma <span>Nitro</span><br>Collection</h2>
+      <p>Varanasi mein sabse zyada bika — Black & Orange</p>
+      <button class="slide-cta" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Shop Now →</button>
+    </div>
+    <div class="slide-img">👟</div>
+  </div>
+  <!-- Slide 2 -->
+  <div class="slide slide-2">
+    <div class="slide-content">
+      <div class="slide-tag">⚡ New Arrival</div>
+      <h2>Nike <span>Air</span><br>Series 2026</h2>
+      <p>Latest running shoes — Upto 45% off</p>
+      <button class="slide-cta" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Order Now →</button>
+    </div>
+    <div class="slide-img">🏃</div>
+  </div>
+  <!-- Slide 3 -->
+  <div class="slide slide-3">
+    <div class="slide-content">
+      <div class="slide-tag">🌟 Trending</div>
+      <h2>Adidas <span>Campus</span><br>Edition</h2>
+      <p>Street style ke liye best choice</p>
+      <button class="slide-cta" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Explore →</button>
+    </div>
+    <div class="slide-img">🥿</div>
+  </div>
+
+  <button class="slider-arrow prev" onclick="changeSlide(-1)">‹</button>
+  <button class="slider-arrow next" onclick="changeSlide(1)">›</button>
+  <div class="slider-dots">
+    <div class="dot active" onclick="goSlide(0)"></div>
+    <div class="dot" onclick="goSlide(1)"></div>
+    <div class="dot" onclick="goSlide(2)"></div>
+  </div>
+</div>
+
+<!-- OFFER STRIP -->
+<div class="offer-strip">
+  <div class="offer-item"><span class="offer-icon">🚚</span><div class="offer-text"><strong>Same Day Delivery</strong><span>Varanasi ke andar</span></div></div>
+  <div class="offer-item"><span class="offer-icon">✅</span><div class="offer-text"><strong>100% Original</strong><span>Branded guaranteed</span></div></div>
+  <div class="offer-item"><span class="offer-icon">↩️</span><div class="offer-text"><strong>Easy Exchange</strong><span>Size problem? Badal do</span></div></div>
+  <div class="offer-item"><span class="offer-icon">💳</span><div class="offer-text"><strong>UPI / COD</strong><span>Sabhi payment accepted</span></div></div>
+</div>
+
+<!-- BRAND FILTER -->
+<div class="brand-section fade-in">
+  <div class="brand-title">Brand ke hisaab se dhundho</div>
+  <div class="brand-grid">
+    <button class="brand-btn all active" onclick="setBrand(this,'all')">⭐ All Brands</button>
+    <button class="brand-btn" onclick="setBrand(this,'nike')">✔ Nike</button>
+    <button class="brand-btn" onclick="setBrand(this,'puma')">🐆 Puma</button>
+    <button class="brand-btn" onclick="setBrand(this,'adidas')">🏆 Adidas</button>
+    <button class="brand-btn" onclick="setBrand(this,'reebok')">💪 Reebok</button>
+    <button class="brand-btn" onclick="setBrand(this,'newbalance')">🔵 New Balance</button>
+    <button class="brand-btn" onclick="setBrand(this,'bata')">👞 Bata</button>
+    <button class="brand-btn" onclick="setBrand(this,'local')">🇮🇳 Local Brands</button>
+  </div>
+</div>
+
+<!-- COUNTDOWN -->
+<div class="countdown-bar fade-in">
+  <div class="cd-left">
+    <strong>⚡ Flash Sale — Extra 20% Off!</strong>
+    <span>Aaj raat khatam ho jayega</span>
+  </div>
+  <div class="cd-timer">
+    <div class="cd-block"><span class="cd-num" id="cdh">06</span><span class="cd-unit">HRS</span></div>
+    <span class="cd-sep">:</span>
+    <div class="cd-block"><span class="cd-num" id="cdm">44</span><span class="cd-unit">MIN</span></div>
+    <span class="cd-sep">:</span>
+    <div class="cd-block"><span class="cd-num" id="cds">12</span><span class="cd-unit">SEC</span></div>
+  </div>
+  <button class="grab-btn">Grab Deal 🔥</button>
+</div>
+
+<!-- PRODUCTS -->
+<div class="section fade-in" id="products">
+  <div class="sec-header">
+    <div>
+      <div class="sec-title">🔥 <span>Trending</span> Shoes — 2026</div>
+      <div class="sec-sub">Varanasi mein sabse zyada bik rahe hain yeh shoes</div>
+    </div>
+    <button class="view-all">View All</button>
+  </div>
+  <div class="products-grid">
+
+    <!-- P1 -->
+    <div class="prod-card" data-brand="puma">
+      <div class="prod-img-wrap">
+        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&q=80" alt="Puma Nitro" onerror="this.parentElement.innerHTML='<div style=font-size:4rem>👟</div>'">
+        <span class="prod-badge hot">Bestseller</span>
+        <button class="prod-wishlist">🤍</button>
+      </div>
+      <div class="prod-brand">Puma</div>
+      <div class="prod-name">Puma Nitro Running Shoes — Black Orange</div>
+      <div class="prod-rating"><span class="rating-pill">4.6 ★</span><span class="rating-count">(2,341)</span></div>
+      <div class="prod-price-row"><span class="prod-price">₹3,499</span><span class="prod-mrp">₹6,299</span><span class="prod-disc">44% off</span></div>
+      <div class="prod-stock">Only 4 pairs left!</div>
+      <div class="prod-sizes"><div class="sz">6</div><div class="sz">7</div><div class="sz">8</div><div class="sz">9</div><div class="sz">10</div></div>
+      <button class="add-cart" onclick="openModal('Puma Nitro Running Shoes','₹3,499','₹6,299','44%','https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300&q=80')">🛒 Order Now</button>
+    </div>
+
+    <!-- P2 -->
+    <div class="prod-card" data-brand="nike">
+      <div class="prod-img-wrap">
+        <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400&q=80" alt="Nike" onerror="this.parentElement.innerHTML='<div style=font-size:4rem>👟</div>'">
+        <span class="prod-badge new">New 2026</span>
+        <button class="prod-wishlist">🤍</button>
+      </div>
+      <div class="prod-brand">Nike</div>
+      <div class="prod-name">Nike Air Zoom Pegasus — White Blue</div>
+      <div class="prod-rating"><span class="rating-pill">4.7 ★</span><span class="rating-count">(3,102)</span></div>
+      <div class="prod-price-row"><span class="prod-price">₹4,299</span><span class="prod-mrp">₹7,995</span><span class="prod-disc">46% off</span></div>
+      <div class="prod-sizes"><div class="sz">7</div><div class="sz">8</div><div class="sz">9</div><div class="sz">10</div><div class="sz">11</div></div>
+      <button class="add-cart" onclick="openModal('Nike Air Zoom Pegasus','₹4,299','₹7,995','46%','https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=300&q=80')">🛒 Order Now</button>
+    </div>
+
+    <!-- P3 -->
+    <div class="prod-card" data-brand="adidas">
+      <div class="prod-img-wrap">
+        <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=400&q=80" alt="Adidas" onerror="this.parentElement.innerHTML='<div style=font-size:4rem>👟</div>'">
+        <span class="prod-badge sale">45% Off</span>
+        <button class="prod-wishlist">🤍</button>
+      </div>
+      <div class="prod-brand">Adidas</div>
+      <div class="prod-name">Adidas Campus 00s — Casual Lifestyle</div>
+      <div class="prod-rating"><span class="rating-pill">4.5 ★</span><span class="rating-count">(1,876)</span></div>
+      <div class="prod-price-row"><span class="prod-price">₹2,999</span><span class="prod-mrp">₹5,499</span><span class="prod-disc">45% off</span></div>
+      <div class="prod-sizes"><div class="sz">6</div><div class="sz">7</div><div class="sz">8</div><div class="sz">9</div></div>
+      <button class="add-cart" onclick="openModal('Adidas Campus 00s','₹2,999','₹5,499','45%','https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=300&q=80')">🛒 Order Now</button>
+    </div>
+
+    <!-- P4 -->
+    <div class="prod-card" data-brand="nike">
+      <div class="prod-img-wrap">
+        <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=400&q=80" alt="Nike" onerror="this.parentElement.innerHTML='<div style=font-size:4rem>👟</div>'">
+        <span class="prod-badge limited">Limited</span>
+        <button class="prod-wishlist">🤍</button>
+      </div>
+      <div class="prod-brand">Nike</div>
+      <div class="prod-name">Nike Dunk Low — Triple White</div>
+      <div class="prod-rating"><span class="rating-pill">4.8 ★</span><span class="rating-count">(4,210)</span></div>
+      <div class="prod-price-row"><span class="prod-price">₹5,499</span><span class="prod-mrp">₹9,995</span><span class="prod-disc">45% off</span></div>
+      <div class="prod-stock">Only 2 pairs left!</div>
+      <div class="prod-sizes"><div class="sz">7</div><div class="sz">8</div><div class="sz">9</div></div>
+      <button class="add-cart" onclick="openModal('Nike Dunk Low Triple White','₹5,499','₹9,995','45%','https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=300&q=80')">🛒 Order Now</button>
+    </div>
+
+    <!-- P5 -->
+    <div class="prod-card" data-brand="reebok">
+      <div class="prod-img-wrap">
+        <img src="https://images.unsplash.com/photo-1539185441755-769473a23570?w=400&q=80" alt="Reebok" onerror="this.parentElement.innerHTML='<div style=font-size:4rem>👟</div>'">
+        <span class="prod-badge hot">Trending</span>
+        <button class="prod-wishlist">🤍</button>
+      </div>
+      <div class="prod-brand">Reebok</div>
+      <div class="prod-name">Reebok Classic Leather — All Black</div>
+      <div class="prod-rating"><span class="rating-pill">4.4 ★</span><span class="rating-count">(987)</span></div>
+      <div class="prod-price-row"><span class="prod-price">₹2,499</span><span class="prod-mrp">₹4,499</span><span class="prod-disc">44% off</span></div>
+      <div class="prod-sizes"><div class="sz">6</div><div class="sz">7</div><div class="sz">8</div><div class="sz">9</div><div class="sz">10</div></div>
+      <button class="add-cart" onclick="openModal('Reebok Classic Leather','₹2,499','₹4,499','44%','https://images.unsplash.com/photo-1539185441755-769473a23570?w=300&q=80')">🛒 Order Now</button>
+    </div>
+
+    <!-- P6 -->
+    <div class="prod-card" data-brand="adidas">
+      <div class="prod-img-wrap">
+        <img src="https://images.unsplash.com/photo-1556048219-bb6978360b84?w=400&q=80" alt="Adidas" onerror="this.parentElement.innerHTML='<div style=font-size:4rem>👟</div>'">
+        <span class="prod-badge new">New</span>
+        <button class="prod-wishlist">🤍</button>
+      </div>
+      <div class="prod-brand">Adidas</div>
+      <div class="prod-name">Adidas Ultraboost 22 — Grey White</div>
+      <div class="prod-rating"><span class="rating-pill">4.6 ★</span><span class="rating-count">(1,543)</span></div>
+      <div class="prod-price-row"><span class="prod-price">₹4,799</span><span class="prod-mrp">₹8,999</span><span class="prod-disc">47% off</span></div>
+      <div class="prod-sizes"><div class="sz">7</div><div class="sz">8</div><div class="sz">9</div><div class="sz">10</div></div>
+      <button class="add-cart" onclick="openModal('Adidas Ultraboost 22','₹4,799','₹8,999','47%','https://images.unsplash.com/photo-1556048219-bb6978360b84?w=300&q=80')">🛒 Order Now</button>
+    </div>
+
+    <!-- P7 -->
+    <div class="prod-card" data-brand="puma">
+      <div class="prod-img-wrap">
+        <img src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=400&q=80" alt="Puma" onerror="this.parentElement.innerHTML='<div style=font-size:4rem>👟</div>'">
+        <span class="prod-badge sale">Budget Pick</span>
+        <button class="prod-wishlist">🤍</button>
+      </div>
+      <div class="prod-brand">Puma</div>
+      <div class="prod-name">Puma Softride Enzo Neo — Daily Runner</div>
+      <div class="prod-rating"><span class="rating-pill">4.3 ★</span><span class="rating-count">(2,109)</span></div>
+      <div class="prod-price-row"><span class="prod-price">₹1,899</span><span class="prod-mrp">₹3,499</span><span class="prod-disc">46% off</span></div>
+      <div class="prod-sizes"><div class="sz">6</div><div class="sz">7</div><div class="sz">8</div><div class="sz">9</div><div class="sz">10</div><div class="sz">11</div></div>
+      <button class="add-cart" onclick="openModal('Puma Softride Enzo Neo','₹1,899','₹3,499','46%','https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=300&q=80')">🛒 Order Now</button>
+    </div>
+
+    <!-- P8 -->
+    <div class="prod-card" data-brand="newbalance">
+      <div class="prod-img-wrap">
+        <img src="https://images.unsplash.com/photo-1539533018257-8c7a2c4d1fb8?w=400&q=80" alt="New Balance" onerror="this.parentElement.innerHTML='<div style=font-size:4rem>👟</div>'">
+        <span class="prod-badge hot">Hot 🔥</span>
+        <button class="prod-wishlist">🤍</button>
+      </div>
+      <div class="prod-brand">New Balance</div>
+      <div class="prod-name">New Balance 550 — Retro White Green</div>
+      <div class="prod-rating"><span class="rating-pill">4.7 ★</span><span class="rating-count">(876)</span></div>
+      <div class="prod-price-row"><span class="prod-price">₹3,999</span><span class="prod-mrp">₹7,495</span><span class="prod-disc">47% off</span></div>
+      <div class="prod-stock">Only 3 pairs left!</div>
+      <div class="prod-sizes"><div class="sz">7</div><div class="sz">8</div><div class="sz">9</div><div class="sz">10</div></div>
+      <button class="add-cart" onclick="openModal('New Balance 550 Retro','₹3,999','₹7,495','47%','https://images.unsplash.com/photo-1539533018257-8c7a2c4d1fb8?w=300&q=80')">🛒 Order Now</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- BRAND SHOWCASE -->
+<div class="brands-showcase fade-in">
+  <h3>Top <span>Brands</span> — Hamare Paas</h3>
+  <div class="brand-cards">
+    <div class="brand-card"><div class="brand-card-logo">✔</div><div class="brand-card-name">Nike</div><div class="brand-card-count">42 styles</div></div>
+    <div class="brand-card"><div class="brand-card-logo">🐆</div><div class="brand-card-name">Puma</div><div class="brand-card-count">38 styles</div></div>
+    <div class="brand-card"><div class="brand-card-logo">🏆</div><div class="brand-card-name">Adidas</div><div class="brand-card-count">35 styles</div></div>
+    <div class="brand-card"><div class="brand-card-logo">💪</div><div class="brand-card-name">Reebok</div><div class="brand-card-count">22 styles</div></div>
+    <div class="brand-card"><div class="brand-card-logo">🔵</div><div class="brand-card-name">New Balance</div><div class="brand-card-count">18 styles</div></div>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="dashboard fade-in" id="dashboard">
+  <div class="dash-title-bar">
+    <h3>📊 Owner Dashboard — Trending Shoes Varanasi</h3>
+    <span>Live Overview · Aaj ka data</span>
+  </div>
+  <div class="dash-body">
+    <div class="dash-stats">
+      <div class="stat-card"><div class="stat-label">Aaj ki Sale</div><div class="stat-val">₹24,700</div><div class="stat-change up">↑ +31% vs kal</div></div>
+      <div class="stat-card"><div class="stat-label">Pending Orders</div><div class="stat-val">11</div><div class="stat-change up">↑ 5 new aaj</div></div>
+      <div class="stat-card"><div class="stat-label">Low Stock Alert</div><div class="stat-val">06</div><div class="stat-change down">↓ Restock karo</div></div>
+      <div class="stat-card"><div class="stat-label">YouTube Visitors</div><div class="stat-val">512</div><div class="stat-change up">↑ +58% this week</div></div>
+    </div>
+    <div class="dash-bottom">
+      <div class="dash-table-wrap">
+        <div class="dash-sub">Recent Orders</div>
+        <table>
+          <thead><tr><th>Customer</th><th>Product</th><th>Size</th><th>Amount</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Rohit K.</td><td>Puma Nitro</td><td>9</td><td><strong>₹3,499</strong></td><td><span class="status-pill delivered">Delivered</span></td></tr>
+            <tr><td>Anjali S.</td><td>Nike Air Zoom</td><td>6</td><td><strong>₹4,299</strong></td><td><span class="status-pill packed">Packed</span></td></tr>
+            <tr><td>Vikas M.</td><td>Adidas Campus</td><td>10</td><td><strong>₹2,999</strong></td><td><span class="status-pill processing">Processing</span></td></tr>
+            <tr><td>Priya T.</td><td>Nike Dunk Low</td><td>5</td><td><strong>₹5,499</strong></td><td><span class="status-pill pending">Pending</span></td></tr>
+            <tr><td>Suresh P.</td><td>NB 550 Retro</td><td>8</td><td><strong>₹3,999</strong></td><td><span class="status-pill delivered">Delivered</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="dash-src-wrap">
+        <div class="dash-sub">Traffic Sources</div>
+        <div class="src-row"><span class="src-icon">▶️</span><span class="src-name">YouTube</span><div class="src-bar-bg"><div class="src-bar yt" style="width:65%"></div></div><span class="src-pct">65%</span></div>
+        <div class="src-row"><span class="src-icon">💬</span><span class="src-name">WhatsApp</span><div class="src-bar-bg"><div class="src-bar wa" style="width:20%"></div></div><span class="src-pct">20%</span></div>
+        <div class="src-row"><span class="src-icon">📸</span><span class="src-name">Instagram</span><div class="src-bar-bg"><div class="src-bar ig" style="width:10%"></div></div><span class="src-pct">10%</span></div>
+        <div class="src-row"><span class="src-icon">🌐</span><span class="src-name">Direct</span><div class="src-bar-bg"><div class="src-bar direct" style="width:5%"></div></div><span class="src-pct">5%</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">Trending <span>Shoes</span> Varanasi</div>
+      <p class="footer-desc">Varanasi ka #1 branded shoe store. Nike, Puma, Adidas — sab original. Lahartara mein milein ya WhatsApp karo.</p>
+    </div>
+    <div class="footer-col"><h4>Shop</h4><ul><li><a href="#">New Arrivals 2026</a></li><li><a href="#">Running Shoes</a></li><li><a href="#">Casual Shoes</a></li><li><a href="#">Sports Shoes</a></li><li><a href="#">Kids Shoes</a></li></ul></div>
+    <div class="footer-col"><h4>Brands</h4><ul><li><a href="#">Nike</a></li><li><a href="#">Puma</a></li><li><a href="#">Adidas</a></li><li><a href="#">Reebok</a></li><li><a href="#">New Balance</a></li></ul></div>
+    <div class="footer-col"><h4>Contact</h4><ul><li><a href="#">📍 Lahartara, Varanasi</a></li><li><a href="https://wa.me/916394326180">💬 6394326180</a></li><li><a href="#">📸 @Trending_shoes.varanasi</a></li><li><a href="#">▶️ YouTube Channel</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Trending Shoes Varanasi. All rights reserved.</p>
+    <p>Made with ❤️ in Varanasi 🇮🇳</p>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeOut(event)">
+  <div class="modal">
+    <div class="modal-top"><h3>WhatsApp par Order Karo</h3><button class="modal-close" onclick="closeModal()">×</button></div>
+    <div class="modal-body">
+      <div class="modal-row">
+        <div class="modal-img"><img id="m-img" src="" alt="" onerror="this.parentElement.textContent='👟'"></div>
+        <div>
+          <div class="modal-prod-name" id="m-name"></div>
+          <div style="display:flex;gap:8px;align-items:center;margin-top:6px;">
+            <span class="modal-price" id="m-price"></span>
+            <span class="modal-old" id="m-old"></span>
+            <span class="modal-disc" id="m-disc"></span>
+          </div>
+          <div style="margin-top:6px;font-size:.65rem;color:var(--green)">✅ Original · Same Day Delivery Varanasi</div>
+        </div>
+      </div>
+      <div class="modal-section-title">Size chunein</div>
+      <div class="sz-row">
+        <button class="sz-btn" onclick="selSz(this)">6</button>
+        <button class="sz-btn" onclick="selSz(this)">7</button>
+        <button class="sz-btn selected" onclick="selSz(this)">8</button>
+        <button class="sz-btn" onclick="selSz(this)">9</button>
+        <button class="sz-btn" onclick="selSz(this)">10</button>
+        <button class="sz-btn" onclick="selSz(this)">11</button>
+      </div>
+      <button class="modal-wa" onclick="orderWA()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp par Order Karo — 6394326180
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+// Category
+function setCat(el){document.querySelectorAll('.cat-item').forEach(c=>c.classList.remove('active'));el.classList.add('active');}
+
+// Brand filter
+function setBrand(el,brand){
+  document.querySelectorAll('.brand-btn').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelectorAll('.prod-card').forEach(card=>{
+    if(brand==='all'||card.dataset.brand===brand){card.style.display='';}
+    else{card.style.display='none';}
+  });
+}
+
+// Wishlist
+document.querySelectorAll('.prod-wishlist').forEach(b=>{
+  b.addEventListener('click',function(){this.textContent=this.textContent==='🤍'?'❤️':'🤍';});
+});
+
+// Slider
+let cur=0;const slides=document.querySelectorAll('.slide');const dots=document.querySelectorAll('.dot');
+function goSlide(n){slides[cur].classList.remove('active');dots[cur].classList.remove('active');cur=n;slides[cur].classList.add('active');dots[cur].classList.add('active');}
+function changeSlide(d){goSlide((cur+d+slides.length)%slides.length);}
+setInterval(()=>changeSlide(1),4000);
+
+// Countdown
+function startCD(){
+  let end=new Date();end.setHours(23,59,59,0);
+  setInterval(()=>{
+    const diff=end-new Date();if(diff<=0)return;
+    const h=Math.floor(diff/3600000),m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);
+    document.getElementById('cdh').textContent=String(h).padStart(2,'0');
+    document.getElementById('cdm').textContent=String(m).padStart(2,'0');
+    document.getElementById('cds').textContent=String(s).padStart(2,'0');
+  },1000);
+}startCD();
+
+// Modal
+let mN='',mP='';
+function openModal(name,price,old,disc,img){
+  mN=name;mP=price;
+  document.getElementById('m-name').textContent=name;
+  document.getElementById('m-price').textContent=price;
+  document.getElementById('m-old').textContent=old;
+  document.getElementById('m-disc').textContent=disc+' off';
+  document.getElementById('m-img').src=img;
+  document.getElementById('modal').classList.add('open');
+}
+function closeModal(){document.getElementById('modal').classList.remove('open');}
+function closeOut(e){if(e.target.id==='modal')closeModal();}
+function selSz(b){document.querySelectorAll('.sz-btn').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');}
+function orderWA(){
+  const sz=document.querySelector('.sz-btn.selected')?.textContent||'8';
+  const msg=`Namaste! Mujhe yeh shoes order karne hain:\n\n👟 *${mN}*\nSize: UK ${sz}\nPrice: ${mP}\n\nVaranasi Lahartara delivery chahiye. Please confirm karein!`;
+  window.open(`https://wa.me/916394326180?text=${encodeURIComponent(msg)}`,'_blank');
+}
+
+// Fade in
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');});},{threshold:.08});
+document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
